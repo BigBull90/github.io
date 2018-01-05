@@ -1,0 +1,59 @@
+<br>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <strong>Coindelta vs Koinex</strong>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <button type="button" class="btn btn-primary navbar-btn navbar-right" ng-click="getData()">Refresh</button>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Currency
+                                    </th>
+                                    <th>
+                                        Coindelta
+                                    </th>
+                                    <th>
+                                        Koinex
+                                    </th>
+                                    <th>
+                                        Difference
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="currency in mapping">
+                                <td>
+                                    <strong>{{currency}}</strong>
+                                </td>
+                                <td ng-class="{'danger':koinex[currency]>coindelta[currency],'success':koinex[currency]<coindelta[currency]}">
+                                    {{coindelta[currency] | number}}
+                                </td>
+                                <td ng-class="{'success':koinex[currency]>coindelta[currency],'danger':koinex[currency]<coindelta[currency]}">
+                                    {{koinex[currency] | number}}
+                                </td>
+                                <td>
+                                    <span ng-show="koinex[currency] && coindelta[currency]">
+                            {{koinex[currency]/coindelta[currency]*100 - 100 | number:2}} %    
+                        </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
